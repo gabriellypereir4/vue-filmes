@@ -37,8 +37,16 @@ function adicionarFilme() {
       </div>
       <button @click.stop.prevent="adicionarFilme">registrar</button>
     </form>
-    {{ JSON.stringify(filme) }}
-    {{ JSON.stringify(filmes) }}
+    <div class="grid">
+      <article v-for="(umFilme, index) in filmes">
+        <img :src="umFilme.capa" alt="Filme" />
+        <div class="text">
+          <h3>{{ umFilme.nome }}</h3>
+          <button v-if="umFilme.assistido">assistido</button>
+          <button v-else>não assistido</button>
+        </div>
+      </article>
+    </div>
   </div>
 </template>
 
@@ -65,5 +73,29 @@ function adicionarFilme() {
 }
 .assistindo {
   margin-left: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+}
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+}
+.grid > article img {
+  max-width: 100%;
+}
+.text {
+  padding: 0 20px 20px;
+}
+.text > button {
+  background: gray;
+  border: 0;
+  color: white;
+  padding: 10px;
+  width: 100%;
 }
 </style>
