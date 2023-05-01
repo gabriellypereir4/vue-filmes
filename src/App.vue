@@ -7,9 +7,10 @@ let filme = reactive({
   assistido: false,
 });
 
-// functions that mutate state and trigger updates
-function increment() {
-  count.value++;
+let filmes = reactive([]);
+
+function adicionarFilme() {
+  filmes.push(filme);
 }
 </script>
 
@@ -34,9 +35,10 @@ function increment() {
           name="assistido"
         />
       </div>
-      <button>registrar</button>
+      <button @click.stop.prevent="adicionarFilme">registrar</button>
     </form>
     {{ JSON.stringify(filme) }}
+    {{ JSON.stringify(filmes) }}
   </div>
 </template>
 
